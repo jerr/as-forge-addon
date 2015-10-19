@@ -58,9 +58,11 @@ public abstract class AbstractASWizardImpl extends AbstractProjectCommand
    @Override
    public boolean isEnabled(UIContext context)
    {
-      ApplicationServerProvider selectedProvider = getSelectedProvider(context);
-      if (selectedProvider != null && super.isEnabled(context))
-         return selectedProvider.isASInstalled(context);
+      if (super.isEnabled(context)) {
+         ApplicationServerProvider selectedProvider = getSelectedProvider(context);
+         if (selectedProvider != null)
+            return selectedProvider.isASInstalled(context);
+      }
       return false;
    }
 
